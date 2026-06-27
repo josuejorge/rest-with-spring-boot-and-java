@@ -29,8 +29,11 @@ jobs:
         cache: maven
     
     - name: Build Application .jar
-      #working-directory: ./rest-with-spring-boot-and-java
-      run: mvn clean package -Dmaven.test.skip=true
+      #working-directory: ./rest-with-spring-boot-and-java      
+      # CASO OS TESTES DO TESTCONTEINERS PASSEM, MANTER ESSA LINHA
+      run: mvn clean package
+      # CASO FALHE O TEST CONTEINERS, DESCOMENTAR ESSA DE BAIXO, PARA DAR SKIP NOS TESTES
+      #run: mvn clean package -Dmaven.test.skip=true
 
     - name: Docker Compose Build
       run: docker compose build
